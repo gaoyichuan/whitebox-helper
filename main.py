@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import csv
 import os
@@ -49,8 +51,10 @@ with open(args.students, 'r') as csvfile:
 for index, [stuid, name, github] in enumerate(students):
     clear()
     pos(0, 0)
-    repo = os.path.join(
-        args.workspace, "-".join([args.prefix, github]))
+    if(args.prefix == ""):
+        repo = os.path.join(args.workspace, github)
+    else:
+        repo = os.path.join(args.workspace, "-".join([args.prefix, github]))
 
     if(not os.path.exists(repo)):
         print("Repo {} not exists, no points".format(repo))
